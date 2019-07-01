@@ -200,7 +200,16 @@ var Data = module.exports = {
 		return this.tracks[trackIndex].soundIndex;
 	},
 
-	playTrackSound: function(trackIndex, time, velocity){
+	randomizeSoundIndexes: function(){
+		var i;
+		var total = Data.getTotalPoints();
+		for (i=0; i<this.totalTracks; i++){
+			var index = Math.random()*total;
+			this.tracks[i].soundIndex = parseInt(index);
+		}
+	},
+
+	/*playTrackSound: function(trackIndex, time, velocity){
 		this.playSound(this.tracks[trackIndex].soundIndex, time, velocity);
 	},
 
@@ -208,5 +217,5 @@ var Data = module.exports = {
 		var chunkIndex = this.chunkIndexes[soundIndex];
 		soundIndex = this.localSoundIndexes[soundIndex];
 		this.player.start(chunkIndex, time, soundIndex*this.soundLength+this.soundOffset,this.soundLength-this.soundReleaseTime,0,velocity);
-	}
+	}*/
 };

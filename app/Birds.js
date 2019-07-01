@@ -206,6 +206,17 @@ var Birds = module.exports = function() {
 				this.piano.pause();
 			}
 		}.bind(scope),false);
+		this.nav.addEventListener("ON_REFRESH",function(){
+			Data.randomizeSoundIndexes();
+		}.bind(scope),false);
+		this.nav.addEventListener("ON_TEMPO_UPDATED",function(normal){
+			if (this.piano){
+				var increments = (200-60)/20;
+				var steppedNormal = (normal*increments|0)/increments;
+				var value = (200-60)*steppedNormal+60;
+				this.piano.setTempo(value);
+			}
+		}.bind(this));
 		this.nav.init();
 	};
 
