@@ -18,7 +18,9 @@
     "pixi.js": "3.0.11",
     "stats.js": "0.16.0",
     "tone": "0.8.0",
-    "tween.js": "16.3.5"
+    "tween.js": "16.3.5",
+    "three": "0.75.0",
+    "rtree": "1.4.2"
   },
   "devDependencies": {
     "autoprefixer-loader": "3.2.0",

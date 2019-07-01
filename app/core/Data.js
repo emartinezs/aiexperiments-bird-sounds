@@ -29,10 +29,10 @@ var birdSuggestions = require("raw!data/autosuggest_bird.txt");
 	for (i = 0; i < birdCoords.length; i++){
 		var row = birdCoords[i].split("\t");
 		birdCoords[i] = [
-			parseFloat(row[0]), 
-			parseFloat(row[1]), 
+			parseFloat(row[0]),
+			parseFloat(row[1]),
 			parseFloat(row[2])
-			]; 
+			];
 	}
 
 	filenames = filenames.split("\n");
@@ -48,6 +48,21 @@ var Data = module.exports = {
 	totalPoints: birdCoords.length,
 	filterStates:null,
 	filteredList: [],
+
+	//Piano
+	totalTracks: 4,
+	tracks: [
+		{
+			soundIndex: -1,
+		},{
+			soundIndex: -1,
+		},{
+			soundIndex: -1,
+		},{
+			soundIndex: -1,
+		},
+	],
+
 	getBird: function(index){
 		return {
 				x: birdCoords[index][0],
@@ -171,4 +186,26 @@ var Data = module.exports = {
 		return suggestions;
 	},
 
+	//Piano
+	getTotalTracks: function(){
+		return this.tracks.length;
+	},
+
+	getTrack: function(trackIndex){
+		return this.tracks[trackIndex];
+	},
+
+	getSoundIndex: function(trackIndex){
+		return this.tracks[trackIndex].soundIndex;
+	},
+
+	playTrackSound: function(trackIndex, time, velocity){
+		this.playSound(this.tracks[trackIndex].soundIndex, time, velocity);
+	},
+
+	playSound: function(soundIndex, time, velocity){
+		var chunkIndex = this.chunkIndexes[soundIndex];
+		soundIndex = this.localSoundIndexes[soundIndex];
+		this.player.start(chunkIndex, time, soundIndex*this.soundLength+this.soundOffset,this.soundLength-this.soundReleaseTime,0,velocity);
+	}
 };

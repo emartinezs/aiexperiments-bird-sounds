@@ -24,6 +24,9 @@ var Filter = require("./core/Filter");
 var Config = require("./core/Config");
 var ZoomControls = require("./core/ZoomControls");
 
+//Piano
+var Piano = require("./piano/Piano");
+
 var Birds = module.exports = function() {
 
 	var scope = this;
@@ -34,6 +37,9 @@ var Birds = module.exports = function() {
 	this.loader = null;
 	this.sound = null;
 	this.label = null;
+
+	//Piano
+	var piano = null;
 
 	this.init = function() {
 
@@ -178,6 +184,9 @@ var Birds = module.exports = function() {
 		this.grid.disableZoom();
 		this.loadVideoPlayer();
 
+		//Piano
+		piano = new Piano();
+		piano.init();
 	};
 
 	this.loadBirdData = function() {
@@ -272,13 +281,13 @@ var Birds = module.exports = function() {
 			infoIcon.classList.remove("show");
 			cover.classList.add("show");
 			about.classList.add("show");
-			
+
 			this.grid.hide();
 			this.grid.disableZoom();
 		}.bind(scope));
 
 	};
-	
+
 	this.beginExperience = function(){
 
 		// show interface element after intro
@@ -314,13 +323,13 @@ var Birds = module.exports = function() {
 		clearTimeout(this.reorientTimer);
 		this.reorientTimer = setTimeout(function() {
 			var isLandScape = window.innerHeight < window.innerWidth;
-			var isPhone = window.innerHeight < 480 || window.innerWidth < 480; 
+			var isPhone = window.innerHeight < 480 || window.innerWidth < 480;
 			var reorient = document.getElementById("reorient");
 			if(isLandScape && isMobile.any() && isPhone) {
 				reorient.classList.add("show");
 			} else {
 				reorient.classList.remove("show");
-			}			
+			}
 
 		}, 250);
 	};
