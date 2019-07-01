@@ -19,8 +19,32 @@
 		<!--Piano-->
 		<div id="controller">
 			<div id="nav" class="nav">
+				<div id="player" class="player">
+					<div class="icon"></div>
+				</div>
 				<div id="piano" class="piano">
 					<div class="container"></div>
+				</div>
+				<div id="buttonsControls" class="buttonsControls">
+					<div class="slider">
+						<div id="sliderShell">
+							<div class="sliderTrack" id="sliderTrack"></div>
+							<div class="sliderThumb" id="sliderThumb"></div>
+							<input class="sliderVertical" id="sliderData" type="range" min="0" max="100" value="0" orient="vertical" />
+						</div>
+					</div>
+					<div class="buttons">
+						<button id="shuffleIcon"></button>
+						<button id="tempoIcon">
+							<svg viewBox="0 0 50 40">
+							<style type="text/css">
+								.st0{fill:#2D2B3F;stroke:#C2BFD9;stroke-width:2;stroke-linecap:round;stroke-miterlimit:10;}
+								.st1{fill:none;stroke:#C2BFD9;stroke-width:2;stroke-linecap:round;stroke-miterlimit:10;}
+							</style>
+							<g id="pendulumWrapper"><g id="pendulum"><line class="st1" x1="0" y1="-14" x2="0" y2="0"/><circle class="st0" cx="0" cy="-17" r="3"/></circle></g></g>
+							</svg>
+						</button>
+					</div>
 				</div>
 			</div>
 		</div>

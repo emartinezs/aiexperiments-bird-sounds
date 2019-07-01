@@ -26,6 +26,7 @@ var ZoomControls = require("./core/ZoomControls");
 
 //Piano
 var Piano = require("./piano/Piano");
+var Nav = require("./piano/Nav");
 
 var Birds = module.exports = function() {
 
@@ -39,7 +40,8 @@ var Birds = module.exports = function() {
 	this.label = null;
 
 	//Piano
-	var piano = null;
+	this.piano = null;
+	this.nav = null;
 
 	this.init = function() {
 
@@ -185,8 +187,26 @@ var Birds = module.exports = function() {
 		this.loadVideoPlayer();
 
 		//Piano
-		piano = new Piano();
-		piano.init();
+		this.piano = new Piano();
+		this.piano.addEventListener("PLAY_SOUND",function(soundIndex){
+			this.sound.play(soundIndex);
+		}.bind(this));
+		this.piano.init();
+
+		this.nav = new Nav();
+		this.nav.setPiano(piano);
+		this.nav.addEventListener("ON_PLAYER_CLICKED",function(){
+			if (Data.isPlaying === false){
+				this.nav.showPause();
+				Data.isPlaying = true;
+				this.piano.start();
+			}else if (Data.isPlaying === true){
+				this.nav.showPlay();
+				Data.isPlaying = false;
+				this.piano.pause();
+			}
+		}.bind(scope),false);
+		this.nav.init();
 	};
 
 	this.loadBirdData = function() {

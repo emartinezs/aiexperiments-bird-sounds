@@ -50,6 +50,7 @@ var Data = module.exports = {
 	filteredList: [],
 
 	//Piano
+	isPlaying: false,
 	totalTracks: 4,
 	tracks: [
 		{

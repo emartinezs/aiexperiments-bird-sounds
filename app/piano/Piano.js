@@ -69,7 +69,6 @@ var Piano = module.exports = function(){
 
   this._triggerVisuals = function(track, index){
     this.tracks[track].trigger(index);
-    this._ontriggerCallback(track);
   };
 
   this._triggerVisualsAfterDelay = function(track,index,time){
@@ -84,7 +83,8 @@ var Piano = module.exports = function(){
   this._ontrigger = function(time, index){
     for (var i=0; i<this.tracks.length; i++){
       if (Beat.get(i,index)){
-        Data.playTrackSound(i,time,Math.random()*0.5+0.5);
+        //Data.playTrackSound(i,time,Math.random()*0.5+0.5);
+        this.dispatchEvent("PLAY_SOUND",[index]);
         this._triggerVisualsAfterDelay(i,index,time);
       }
     }

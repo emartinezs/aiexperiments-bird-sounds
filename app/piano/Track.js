@@ -38,7 +38,7 @@ var Track = module.exports = function(container, id){
   this.trigger = function(index){
     var cell = this.cells[index];
     cell.trigger();
-  }
+  };
 };
 
 Track.prototype = new BoilerPlate();

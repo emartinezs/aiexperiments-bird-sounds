@@ -1,0 +1,220 @@
+@import "responsiveFont";
+
+$lightColor: #c2bfd9;
+$lightMediumColor: #3f3d52;
+$mediumColor: #2d2b3f;
+$mediumDarkColor: #262536;
+$darkColor: #1c1b28;
+$blackColor: #0F0F0F;
+
+#controller {
+	position: absolute;
+	bottom:0px;
+	left:0px;
+	right:0px;
+	height: auto;
+}
+
+#controller > .nav {
+	font-family: 'Roboto Mono', sans-serif;
+	font-weight: 100;
+	letter-spacing: 1px;
+	color:#FFF;
+	@include responsiveFont(1vw, 10px, 10px, 10px);
+	background-color:$mediumColor;
+}
+
+#controller > .nav ::-webkit-scrollbar {
+	width:  10px;
+	height: 10px;
+}
+
+#controller > .nav ::-webkit-scrollbar-thumb {
+	background: $lightMediumColor;
+}
+
+#controller > .nav ::-webkit-scrollbar-track {
+	background: $mediumDarkColor;
+}
+
+body {
+	scrollbar-face-color: $darkColor;
+	scrollbar-track-color: $mediumDarkColor;
+}
+
+#controller > .nav > div {
+	position:absolute;
+}
+
+#controller > .nav > .player {
+	margin: 0px;
+	padding: 0px;
+}
+
+#controller > .nav > .player > .icon{
+	position:absolute;
+	top:50%;
+	left:50%;
+	transform: translateX(-50%) translateY(-50%);
+	height: 60px;
+	width: 60px;
+	background: url(/img/play.svg);
+	cursor: pointer;
+	pointer-events: auto;
+}
+#controller > .nav > .player > .icon.pause {
+	background: url(/img/pause.svg);
+}
+
+#controller > .nav > .piano {
+	position:absolute;
+	margin: 0px;
+	padding: 0px;
+
+	overflow:hidden;
+	overflow-x: auto;
+	white-space: nowrap;
+	scrollbar-face-color: #b46868;
+}
+
+#controller > .nav > #buttonsControls > .buttons {
+	position: relative;
+	top: 50%;
+	left: 50%;
+	transform: translateX(-50%) translateY(-50%);
+	display: flex;
+	justify-content: space-around;
+}
+
+#controller > .nav > #buttonsControls > .buttons > button {
+	padding: 0px;
+	margin: 0px;
+	border:none;
+	height: 40px;
+	width: 40px;
+	min-width:50px;
+}
+#controller > .nav > .buttonsControls > .buttons > #shuffleIcon{
+	background: url(/img/shuffle.svg);
+	background-size: 34px 34px;
+	background-position: center;
+	background-repeat: no-repeat;
+}
+#controller > .nav > .buttonsControls > .buttons > #tempoIcon{
+	background: url(/img/tempo.svg);
+	background-size: 34px 34px;
+	background-position: center;
+	background-repeat: no-repeat;
+}
+#controller > .nav > .buttonsControls > .slider{
+	display: none;
+	position:absolute;
+	top: -190px;
+	left: 50%;
+	transform:  translateX(-50%);
+	width: 40px;
+	height: 190px + 40px;
+	background-color: $mediumDarkColor;
+	border-radius:4pt;
+	border: 2pt solid $lightMediumColor;
+    // z-index: -1;
+}
+#controller > .nav > .buttonsControls > .slider.show{
+	display: block;
+}
+
+$desktop_margin: 10px;
+$desktop_playerWidth: 140px;
+$desktop_sequencerWidth: 440px;
+$desktop_zoomWidth: 50px;
+$desktop_height: 100px;
+
+$desktop_calcA: $desktop_zoomWidth + $desktop_margin + $desktop_margin + $desktop_margin;
+$desktop_calcB: $desktop_playerWidth + $desktop_margin;
+$desktop_calcC: $desktop_calcA + $desktop_sequencerWidth + $desktop_playerWidth;
+$desktop_calcD: $desktop_calcB + $desktop_sequencerWidth;
+$desktop_calcE: $desktop_playerWidth + $desktop_margin;
+// desktop
+@media all {
+
+	#controller > .nav {
+		width: calc(100% - #{$desktop_calcA});
+		margin: $desktop_margin;
+		height:$desktop_height;
+	}
+
+	#controller > .nav > .player {
+		width:$desktop_playerWidth;
+		height:$desktop_height;
+		top:$desktop_margin;
+		left:calc((100% - #{$desktop_calcC}) / 2 + #{$desktop_margin}*4) ;
+	}
+
+	#controller > .nav > .piano {
+		width: $desktop_sequencerWidth;
+		height: $desktop_height;
+		top:$desktop_margin;
+		left:calc(	(100% - #{$desktop_calcC}) / 2 + #{$desktop_calcB} );
+	}
+
+	#controller > .nav > .buttonsControls {
+		width: calc((100% - #{$desktop_calcC}) / 2);
+		height: $desktop_height;
+		top:$desktop_margin;
+		left:calc(	(100% - #{$desktop_calcC}) / 2 + #{$desktop_calcD});
+		border-left: 2pt solid $blackColor;
+	}
+
+	#controller > .nav > #buttonsControls > .buttons > #previewIcon {
+		display:none;
+	}
+
+	#controller > .nav > .buttonsControls > .slider{
+		top: -160px;
+	}
+}
+
+.sliderVertical {
+	position: absolute;
+	left: 0px;
+	top: 10px;
+	overflow: visible;
+	z-index: 100;
+	pointer-events: auto;
+}
+
+.sliderShell {
+	border: 0 none;
+	position: relative;
+	left: 0px;
+	top: 0px;
+	overflow: visible;
+	background-color: rgba(0, 255, 0, 0.5);
+	height:190px;
+}
+
+.sliderTrack {
+	top: 10px;
+	left: 18px;
+	width: 4px;
+	height: 180px - 4px;
+	border: none;
+	border-radius: 4px;
+	position: absolute;
+	background-color: $darkColor;
+}
+
+.sliderThumb {
+	width: 20px;
+	height: 20px;
+	background-color: $lightColor;
+	border-radius: 50%;
+	position: absolute;
+	left: 10px;
+	top: 0px;
+	border: 0 none;
+	padding: 0px;
+	margin: 0px;
+	text-align: center;
+	pointer-events: none;
+}
