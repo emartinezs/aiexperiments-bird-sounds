@@ -2,6 +2,7 @@ require("../../style/nav.scss");
 
 var BoilerPlate = require("../BoilerPlate");
 var Data = require("../core/Data");
+var Icon = require("./Icon");
 
 var Nav = module.exports = function(){
   var scope = this;
@@ -12,6 +13,7 @@ var Nav = module.exports = function(){
   this.isTempoCollapsed = true;
   this.percentage = 0.0;
   this.count = 0;
+  this.icons = [];
 
   this.init = function(){
     this.controller = document.getElementById("controller");
@@ -31,6 +33,14 @@ var Nav = module.exports = function(){
     this.player.addEventListener("click", function(){
       this.dispatchEvent("ON_PLAYER_CLICKED",null);
     }.bind(scope),false);
+
+    this.iconContainer = document.getElementById("iconContainer");
+    var total = Data.getTotalTracks();
+    var icon;
+    for (i=0; i<total; i++){
+      icon = new Icon(this.iconContainer, i);
+      this.icons.push(icon);
+    }
 
     this.pianoWrapper = document.getElementById("piano");
     this.piano = this.pianoWrapper.getElementsByClassName("container")[0];
@@ -140,6 +150,13 @@ var Nav = module.exports = function(){
 
   this.setPiano = function(piano){
     this.pianoData = piano;
+  };
+
+  this.updateBirdIcons = function(){
+    var total = Data.getTotalTracks();
+    for (i=0; i<total; i++){
+      this.icons[i].update(Data.getSoundIndex(i));
+    }
   };
 };
 

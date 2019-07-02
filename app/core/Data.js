@@ -18,11 +18,12 @@ require("../../style/loader.scss");
 
 var birdCoords = require("raw!data/tsne/grid.30.30.2d.sorted.tsv");
 var filenames = require("raw!data/names.txt");
+var imageOffsets = require("raw!data/image_offset.txt");
 var Config = require("./Config.js");
 var birdSuggestions = require("raw!data/autosuggest_bird.txt");
+var sound;
 
 (function(){
-
 	var i,j;
 	//setup the bird coords
 	birdCoords = birdCoords.split("\n");
@@ -40,6 +41,11 @@ var birdSuggestions = require("raw!data/autosuggest_bird.txt");
 		filenames[i] = filenames[i].toUpperCase();
 	}
 
+	imageOffsets = imageOffsets.split("\n");
+	for (i = 0; i < imageOffsets.length; i++){
+		imageOffsets[i] = parseInt(imageOffsets[i]);
+	}
+
 	birdSuggestions = birdSuggestions.split("\n");
 }());
 
@@ -50,6 +56,7 @@ var Data = module.exports = {
 	filteredList: [],
 
 	//Piano
+	selectedBird: -1,
 	isPlaying: false,
 	totalTracks: 4,
 	tracks: [
@@ -200,6 +207,10 @@ var Data = module.exports = {
 		return this.tracks[trackIndex].soundIndex;
 	},
 
+	setSoundIndex: function(trackIndex){
+		this.tracks[trackIndex].soundIndex = selectedBird;
+	},
+
 	randomizeSoundIndexes: function(){
 		var i;
 		var total = Data.getTotalPoints();
@@ -207,6 +218,26 @@ var Data = module.exports = {
 			var index = Math.random()*total;
 			this.tracks[i].soundIndex = parseInt(index);
 		}
+	},
+
+	getName: function(index){
+		return filenames[index];
+	},
+
+	getImage: function(index){
+		return imageOffsets[index];
+	},
+
+	setSelectedBird: function(index){
+		selectedBird = index;
+	},
+
+	setSound: function(newSound){
+		sound = newSound;
+	},
+
+	playSound: function(trackIndex){
+		sound.play(this.tracks[trackIndex].soundIndex);
 	},
 
 	/*playTrackSound: function(trackIndex, time, velocity){

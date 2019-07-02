@@ -108,6 +108,7 @@ var Birds = module.exports = function() {
 			this.filter.unfocus();
 		}.bind(this));
 		this.grid.addEventListener("ON_CHANGED", function(birdData, position){
+			Data.setSelectedBird(birdData.index);
 			this.sound.play(birdData.index);
 			this.grid.highlight();
 			this.label.show(birdData);
@@ -208,6 +209,7 @@ var Birds = module.exports = function() {
 		}.bind(scope),false);
 		this.nav.addEventListener("ON_REFRESH",function(){
 			Data.randomizeSoundIndexes();
+			this.nav.updateBirdIcons();
 		}.bind(scope),false);
 		this.nav.addEventListener("ON_TEMPO_UPDATED",function(normal){
 			if (this.piano){
@@ -229,6 +231,7 @@ var Birds = module.exports = function() {
 		this.sound = new Sound();
 		this.loader = new Loader(this.label, this.sound);
 		this.loader.addEventListener("ALL_LOADED", function(){
+			Data.setSound(this.sound);
 			var introExist = document.getElementById("intro");
 			if(!introExist) {
 				this.removeIntro();
@@ -336,6 +339,8 @@ var Birds = module.exports = function() {
 
 		this.grid.show();
 		this.grid.enableZoom();
+		Data.randomizeSoundIndexes();
+		this.nav.updateBirdIcons();
 	};
 
 	this.removeIntro = function () {

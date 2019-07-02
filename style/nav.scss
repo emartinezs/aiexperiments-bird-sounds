@@ -66,6 +66,39 @@ body {
 	background: url(/img/pause.svg);
 }
 
+#controller > .nav > .iconContainer {
+	position:absolute;
+	margin: 0px;
+	padding: 0px;
+	width: 100%;
+	height: 100%;
+}
+
+.bird_icon{
+	position: relative;
+	height: 100%;
+	width: 25%;
+	float:left;
+}
+
+.bird_image{
+	position: relative;
+	height: 60px;
+	width: 60px;
+}
+
+.bird_title{
+	position: relative;
+	height: 100%;
+	width: 25%;
+}
+
+.bird_button{
+	position: relative;
+	height: 100%;
+	width: 25%;
+}
+
 #controller > .nav > .piano {
 	position:absolute;
 	margin: 0px;
@@ -125,6 +158,7 @@ body {
 
 $desktop_margin: 10px;
 $desktop_playerWidth: 140px;
+$desktop_iconContainerWidth: 500px;
 $desktop_sequencerWidth: 440px;
 $desktop_zoomWidth: 50px;
 $desktop_height: 100px;
@@ -143,26 +177,38 @@ $desktop_calcE: $desktop_playerWidth + $desktop_margin;
 		height:$desktop_height;
 	}
 
+	#controller > .nav > .iconContainer {
+		width: $desktop_iconContainerWidth;
+		height: $desktop_height;
+		top:$desktop_margin;
+		left: 5%;
+		//left:calc((100% - #{$desktop_calcC}) / 2 + #{$desktop_margin}*4) ;
+		//border-left: 2pt solid $blackColor;
+	}
+
 	#controller > .nav > .player {
 		width:$desktop_playerWidth;
 		height:$desktop_height;
 		top:$desktop_margin;
-		left:calc((100% - #{$desktop_calcC}) / 2 + #{$desktop_margin}*4) ;
+		left: 35%;
+		//left:calc((100% - #{$desktop_calcC}) / 2 + #{$desktop_margin}*4) ;
 	}
 
 	#controller > .nav > .piano {
 		width: $desktop_sequencerWidth;
 		height: $desktop_height;
 		top:$desktop_margin;
-		left:calc(	(100% - #{$desktop_calcC}) / 2 + #{$desktop_calcB} );
+		left: 40%;
+		//left:calc(	(100% - #{$desktop_calcA}) / 2 + #{$desktop_margin} );
 	}
 
 	#controller > .nav > .buttonsControls {
 		width: calc((100% - #{$desktop_calcC}) / 2);
 		height: $desktop_height;
 		top:$desktop_margin;
-		left:calc(	(100% - #{$desktop_calcC}) / 2 + #{$desktop_calcD});
-		border-left: 2pt solid $blackColor;
+		left: 65%;
+		//left:calc(	(100% - #{$desktop_calcC}) / 2 + #{$desktop_calcD});
+		//border-left: 2pt solid $blackColor;
 	}
 
 	#controller > .nav > #buttonsControls > .buttons > #previewIcon {

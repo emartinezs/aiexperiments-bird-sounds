@@ -46,7 +46,7 @@ var Cell = module.exports = function(name, container, trackIndex, beatIndex){
     this.set(value);
     if (value && Transport.state == "stopped"){
       var time = Tone.now();
-      Data.playTrackSound(this.trackIndex, time, 1);
+      //Data.playTrackSound(this.trackIndex, time, 1);
     }
   };
 };

@@ -85,7 +85,6 @@ var Piano = module.exports = function(){
       if (Beat.get(i,index)){
         //Data.playTrackSound(i,time,Math.random()*0.5+0.5);
         this.dispatchEvent("PLAY_SOUND",[Data.getSoundIndex(i)]);
-        console.log(Data.getSoundIndex(i));
         this._triggerVisualsAfterDelay(i,index,time);
       }
     }
