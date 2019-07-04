@@ -77,26 +77,43 @@ body {
 .bird_icon{
 	position: relative;
 	height: 100%;
-	width: 25%;
+	width: 24%;
 	float:left;
+	border-left: 2pt solid $blackColor;
 }
 
 .bird_image{
 	position: relative;
-	height: 60px;
-	width: 60px;
+	height: 45px;
+	width: 45px;
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
 }
 
 .bird_title{
 	position: relative;
-	height: 100%;
-	width: 25%;
+	height: 25%;
+	width: 100%;
+	font-size: 10px;
+	font-weight: bold;
+	color: white;
+	background-color: #212121;
+	text-align: center;
 }
 
 .bird_button{
 	position: relative;
-	height: 100%;
-	width: 25%;
+	background-color: #37474f;
+	height: 25%;
+	width: 50%;
+	margin: auto;
+	border: none;
+	color: white;
+	text-align: center;
+	text-decoration: none;
+	display: block;
+	font-size: 8px;
 }
 
 #controller > .nav > .piano {
@@ -161,7 +178,7 @@ $desktop_playerWidth: 140px;
 $desktop_iconContainerWidth: 500px;
 $desktop_sequencerWidth: 440px;
 $desktop_zoomWidth: 50px;
-$desktop_height: 100px;
+$desktop_height: 130px;
 
 $desktop_calcA: $desktop_zoomWidth + $desktop_margin + $desktop_margin + $desktop_margin;
 $desktop_calcB: $desktop_playerWidth + $desktop_margin;
@@ -181,7 +198,7 @@ $desktop_calcE: $desktop_playerWidth + $desktop_margin;
 		width: $desktop_iconContainerWidth;
 		height: $desktop_height;
 		top:$desktop_margin;
-		left: 5%;
+		left:1%;
 		//left:calc((100% - #{$desktop_calcC}) / 2 + #{$desktop_margin}*4) ;
 		//border-left: 2pt solid $blackColor;
 	}
@@ -190,7 +207,7 @@ $desktop_calcE: $desktop_playerWidth + $desktop_margin;
 		width:$desktop_playerWidth;
 		height:$desktop_height;
 		top:$desktop_margin;
-		left: 35%;
+		left: 40%;
 		//left:calc((100% - #{$desktop_calcC}) / 2 + #{$desktop_margin}*4) ;
 	}
 
@@ -198,7 +215,7 @@ $desktop_calcE: $desktop_playerWidth + $desktop_margin;
 		width: $desktop_sequencerWidth;
 		height: $desktop_height;
 		top:$desktop_margin;
-		left: 40%;
+		left: 50%;
 		//left:calc(	(100% - #{$desktop_calcA}) / 2 + #{$desktop_margin} );
 	}
 
@@ -206,7 +223,7 @@ $desktop_calcE: $desktop_playerWidth + $desktop_margin;
 		width: calc((100% - #{$desktop_calcC}) / 2);
 		height: $desktop_height;
 		top:$desktop_margin;
-		left: 65%;
+		left: 85%;
 		//left:calc(	(100% - #{$desktop_calcC}) / 2 + #{$desktop_calcD});
 		//border-left: 2pt solid $blackColor;
 	}

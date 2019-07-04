@@ -1,3 +1,5 @@
+require("../../style/nav.scss");
+
 var BoilerPlate = require("../BoilerPlate");
 var Data = require("../core/Data");
 var Config = require("../core/Config");
@@ -9,30 +11,33 @@ var Icon = module.exports = function(container, trackIndex){
   this.container = container;
   this.trackIndex = trackIndex;
 
-  this.width = 30;
-  this.height = 30;
+  this.width = 60;
+  this.height = 60;
   this.url = "../img/bird_thumbnails.jpg";
   this.img = new Image();
   this.img.src = this.url;
 
   this.icon = document.createElement("div");
   this.icon.className = "bird_icon";
+  this.icon.style.backgroundColor = Data.getTrackColor(trackIndex);
   this.container.appendChild(this.icon);
 
   this.canvas = document.createElement("canvas");
-  this.canvas.id = "bird_image";
+  this.canvas.className = "bird_image";
   this.context = this.canvas.getContext("2d");
   this.context.canvas.width = this.width;
   this.context.canvas.height = this.height;
   this.icon.appendChild(this.canvas);
 
   this.name = document.createElement("p");
-  this.name.id = "bird_title";
+  this.name.className = "bird_title";
+  this.name.style.backgroundColor = Data.getTrackSecondColor(trackIndex);
   this.icon.appendChild(this.name);
 
   this.button = document.createElement("button");
-  this.button.id = "bird_button";
+  this.button.className = "bird_button";
   this.button.innerHTML = "CHANGE";
+  this.button.style.backgroundColor = Data.getTrackSecondColor(trackIndex);
   this.icon.appendChild(this.button);
 
   this.button.addEventListener("click", function(e){

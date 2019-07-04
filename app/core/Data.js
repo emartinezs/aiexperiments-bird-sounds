@@ -70,6 +70,28 @@ var Data = module.exports = {
 			soundIndex: -1,
 		},
 	],
+	colors: [
+		{
+			color: "#d50000",
+		},{
+			color: "#00c853",
+		},{
+			color: "#2962ff",
+		},{
+			color: "#ffd600",
+		},
+	],
+	secondColors: [
+		{
+			color: "#7f0000",
+		},{
+			color: "#1b5e20",
+		},{
+			color: "#0d47a1",
+		},{
+			color: "#bc5100",
+		},
+	],
 
 	getBird: function(index){
 		return {
@@ -238,6 +260,14 @@ var Data = module.exports = {
 
 	playSound: function(trackIndex){
 		sound.play(this.tracks[trackIndex].soundIndex);
+	},
+
+	getTrackColor: function(trackIndex){
+		return this.colors[trackIndex].color;
+	},
+
+	getTrackSecondColor: function(trackIndex){
+		return this.secondColors[trackIndex].color;
 	},
 
 	/*playTrackSound: function(trackIndex, time, velocity){

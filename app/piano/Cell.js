@@ -28,8 +28,10 @@ var Cell = module.exports = function(name, container, trackIndex, beatIndex){
   this.set = function(active){
     if (active){
       this.cell.classList.add("Active");
+      this.fill.style.backgroundColor = Data.getTrackColor(trackIndex);
     }else{
       this.cell.classList.remove("Active");
+      this.fill.style.backgroundColor = "#AAAAAA";
     }
   };
 
@@ -44,10 +46,13 @@ var Cell = module.exports = function(name, container, trackIndex, beatIndex){
     var value = !Beat.get(this.trackIndex, this.beatIndex);
     Beat.set(this.trackIndex, this.beatIndex, value);
     this.set(value);
-    if (value && Transport.state == "stopped"){
-      var time = Tone.now();
-      //Data.playTrackSound(this.trackIndex, time, 1);
+    if (value){
+      Data.playSound(this.trackIndex);
     }
+    /*if (value && Transport.state == "stopped"){
+      var time = Tone.now();
+      Data.playTrackSound(this.trackIndex, time, 1);
+    }*/
   };
 };
 
